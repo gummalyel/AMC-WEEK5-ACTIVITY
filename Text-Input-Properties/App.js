@@ -1,32 +1,12 @@
 import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Text, Alert} from 'react-native';
+import {View, TextInput, StyleSheet, Text} from 'react-native';
 
 
-const KeyboardType = () => {
-  const [fname, setfname] = useState(' ');
-  const [lname, setlname] = useState(' ');  
-  const [phone, setPhone] = useState(' ');
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
-
-
-const SubmitExample = () => {
-  const [fname, setfname] = useState(' ');
-  const [lname, setlname] = useState(' ');  
+const HandleInputExample = () => {
+  const [fname, setFname] = useState(' ');
+  const [lname, setLname] = useState(' ');
   const [phone, setPhone] = useState(' ');
   const [password, setPassword] = useState(' ');
-
-
-const HandleSubmit = () => {
-  Alert.alert('First Name: ', setfname)
-  Alert.alert('Last Name: ', setlname)
-  Alert.alert('Phone No.: ', setPhone)
-  Alert.alert('Password: ', setPassword)
-  Alert.alert('Password: ', setEmail)
-};
-
-
-const ErrorStyleInput = () => {
   const [email, setEmail] = useState(' ');
   const [error, setError] = useState(' ');
 
@@ -41,56 +21,36 @@ const validateEmail = (text) => {
   }
 };
 
+
+
 return (
     <View style = {styles.container}>
-      
-      <TextInput style = {styles.input} 
-      placeholder = "Enter First Name"
-      KeyboardType = "first-name"
-      onChangeText = {(value) => setfname(value)}
-      returnKeyType = "done"
-      onSubmitEditing = {HandleSubmit}
-      />
+      <TextInput style = {styles.input} placeholder = "First Name"
+      onChangeText = {(value) => setFname(value)}/>
+      <Text style ={styles.displayText}> {fname}</Text>
 
-      <TextInput style = {styles.input} 
-      placeholder = "Enter Last Name"
-      KeyboardType = "last-name"
-      onChangeText = {(value) => setlname(value)}
-      returnKeyType = "done"
-      onSubmitEditing = {HandleSubmit}
-      />
 
-      <TextInput style = {styles.input} 
-      placeholder = "Enter Email"
-      KeyboardType = "email-address"
-      onChangeText = {(value) => setEmail(value)}
-      returnKeyType = "done"
-      onSubmitEditing = {HandleSubmit}
-      />
-      
-      <TextInput style = {styles.input} 
-      placeholder = "Enter Phone Number"
-      KeyboardType = "phone-pad"
-      onChangeText = {(value) => setPhone(value)}
-      returnKeyType = "done"
-      onSubmitEditing = {HandleSubmit}
-      />
+      <TextInput style = {styles.input} placeholder = "Last Name"
+      onChangeText = {(value) => setLname(value)}/>
+      <Text style ={styles.displayText}> {lname}</Text>
 
-      <TextInput style = {styles.input} 
-      placeholder = "Enter Password"
-      secureTextEntry = {true}
-      onChangeText = {(value) => setPassword(value)}
-      returnKeyType = "done"
-      onSubmitEditing = {HandleSubmit}
-      />
+ 
+      <TextInput style = {styles.input} placeholder = "Phone Number"
+      onChangeText = {(value) => setPhone(value)}/>
+      <Text style ={styles.displayText}> {phone}</Text>
+
+      <TextInput style = {styles.input} placeholder= "Password" maxLength = {10}
+      onChangeText = {(value) => setPassword(value)}/>
+      <Text style = {styles.displayTextPass}> Remaining {10 - password.length} characters</Text>
       
-      <Text style ={styles.displayText}> Password Length: {password.length}</Text>
+      <TextInput style = {styles.input} placeholder = "Enter Email"
+      onChangeText = {validateEmail}/> 
+      {error ? <Text> {error}</Text> : null}
+       <Text style ={styles.displayText}> {email}</Text>
+
     </View>
   );
 };
-
-
-
 
 const styles = StyleSheet.create({
 
@@ -113,6 +73,10 @@ input :{
 displayText: {
   marginTop: 10,
   fontSize: 18
+},
+
+displayTextPass: {
+  fontSize: 15
 }
 
 
@@ -120,6 +84,4 @@ displayText: {
 });
 
 
-export default KeyboardType;
-export default ErrorStyleInput;
-export default SubmitExample;
+export default HandleInputExample;
