@@ -81,7 +81,6 @@ const HandleInputExample = () => {
       </View>
       <Text style = {styles.displayTextPass}> Remaining {10 - password.length} characters
         </Text>
-``
 
       {/* Email */}
       <View style = {styles.inputContainer}>
